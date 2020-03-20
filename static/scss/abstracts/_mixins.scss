@@ -1,0 +1,57 @@
+// Customize scrollbars
+// @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 25%)) {
+  ::-webkit-scrollbar {
+    width:  $size;
+    height: $size;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+  ::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+// Add vendor prefixes to any css property
+// @include prefixes(transform, scale3d(2.5, 2, 1.5));
+@mixin prefixes($prop, $value) {
+  -webkit-#{$prop}: #{$value};
+  -moz-#{$prop}: #{$value};
+  -ms-#{$prop}: #{$value};
+  -o-#{$prop}: #{$value};
+  #{$prop}: #{$value};
+}
+
+// Keyframe animations
+// @include keyframes(name) { 0% {background: white;} }
+@mixin keyframes($animate) {
+  @-webkit-keyframes #{$animate} {
+    @content;
+  }
+  @-moz-keyframes #{$animate} {
+    @content;
+  }
+  @-o-keyframes #{$animate} {
+    @content;
+  }
+  @keyframes #{$animate} {
+    @content;
+  }
+}
+
+// Font Face Relu
+// @include font-face('Lato', '../fonts/lato/lato-regular-webfont', 400, normal);
+@mixin font-face($font-family, $file-path, $font-weight, $font-style) {
+  @font-face {
+    font-family: $font-family;
+    src: url(#{$file-path}.ttf) format('truetype');
+    font-weight: $font-weight;
+    font-style: $font-style;
+  }
+}

@@ -1,0 +1,76 @@
+@import "../abstracts/abstracts-module";
+
+.btn {
+  color: $body-color;
+  font-size: $font-size-lg;
+  font-family: $font-family-base;
+  font-weight: $font-weight-base;
+  line-height: $line-height-base;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 1px solid transparent;
+  min-height: 4rem;
+  padding: 1rem 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  @include prefixes(transition, $transition-base);
+}
+
+@each $name, $color in $theme-colors {
+  .btn-#{$name} {
+    color: $white;
+    background-color: $color;
+    & > [src*="arrow"] {
+      margin-left: $spacer;
+    }
+    &:hover,
+    &:active {
+      background-color: lighten($color, $theme-color-interval);
+      border-color: transparent;
+      box-shadow: 0 $spacer / 3 $spacer / 2 rgba($secondary, 0.4);
+      @include prefixes(transform, translate3d(0,-5px,0));
+      & > [src*="arrow"] {
+        @include prefixes(transform, scale(1.2, 1));
+      }
+    }
+    &.disabled,
+    &:disabled {
+      color: $white;
+    }
+  }
+}
+
+
+
+// // TOP
+// .btn--chevron-up {
+//   border-radius: $border-radius-lg;
+//   border: none;
+//   line-height: $spacer;
+//   position: fixed;
+//   background-color: $gray-200;
+//   background-image: str-replace(url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>'), "#", "%23");
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   height: $spacer * 2;
+//   width: $spacer * 2;
+//   bottom: $spacer * 6;
+//   right: calc(50% - #{$spacer});
+//   // right: $spacer * 2;
+//   z-index: $zindex-btn--chevron-up;
+//   @include themify() {
+//     box-shadow: getThemifyVariable('shadow');
+//   }
+//   &:hover{
+//     background-color: $gray;
+//     @include themify() {
+//       box-shadow: getThemifyVariable('shadow--hover');
+//     }
+//   }
+// }
